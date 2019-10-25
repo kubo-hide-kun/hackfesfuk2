@@ -16,18 +16,18 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <PropsPractice msg="sample"/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import PropsPractice from './views/PropsPractice';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    PropsPractice,
   },
   data: () => ({
     //
