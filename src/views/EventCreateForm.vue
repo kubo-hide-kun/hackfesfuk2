@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <v-container class="event-create-form">
-      <v-text-field label="イベント名" outlined></v-text-field>・詳細(MarkDown対応)
-      <mavon-editor v-model="value" language="ja" ref="md" @imgAdd="$imgAdd" />
+      <v-text-field v-model="title" label="イベント名" outlined></v-text-field>・詳細(MarkDown対応)
+      <mavon-editor v-model="detail" language="ja" ref="md" @imgAdd="$imgAdd" />
 
       <v-row>
         <v-col cols="12" lg="6">
@@ -33,12 +33,7 @@
             width="290px"
           >
             <template v-slot:activator="{ on }">
-              <v-text-field
-                v-model="time1"
-                label="開始時刻"
-                readonly
-                v-on="on"
-              ></v-text-field>
+              <v-text-field v-model="time1" label="開始時刻" readonly v-on="on"></v-text-field>
             </template>
             <v-time-picker v-if="startTime" v-model="time1" full-width>
               <v-spacer></v-spacer>
@@ -78,12 +73,7 @@
             width="290px"
           >
             <template v-slot:activator="{ on }">
-              <v-text-field
-                v-model="time2"
-                label="終了時刻"
-                readonly
-                v-on="on"
-              ></v-text-field>
+              <v-text-field v-model="time2" label="終了時刻" readonly v-on="on"></v-text-field>
             </template>
             <v-time-picker v-if="endTime" v-model="time2" full-width>
               <v-spacer></v-spacer>
@@ -93,6 +83,22 @@
           </v-dialog>
         </v-col>
       </v-row>
+
+      <div width="100%">
+        <tr>
+          <td width="70%">
+            <v-text-field v-model="inputTag" label="追加するタグ" outlined></v-text-field>
+          </td>
+          <td width="10%">
+            <v-btn color="blue" dark class="ma-1" @click="addTag">タグ追加</v-btn>
+          </td>
+        </tr>
+      </div>
+      <div class="chip-list">
+        <div v-for="(tag,key) in tags" :key="key" class="tag-chips">
+          <v-chip class="ma-1" small close @click:close="removeTag(tag)">{{tag}}</v-chip>
+        </div>
+      </div>
     </v-container>
   </v-app>
 </template>
@@ -108,6 +114,8 @@ export default {
   name: "app",
   data() {
     return {
+      title: "",
+      detail: "",
       date1: new Date().toISOString().substr(0, 10),
       date2: new Date().toISOString().substr(0, 10),
       time1: null,
@@ -116,7 +124,17 @@ export default {
       endDay: false,
       startTime: false,
       endTime: false,
-      value: ""
+      inputTag: "",
+      tags: [
+        "test1",
+        "test2",
+        "test3",
+        "test",
+        "test1",
+        "test2",
+        "test3",
+        "test"
+      ]
     };
   },
   methods: {
@@ -132,6 +150,14 @@ export default {
         console.log(url); // eslint-disable-line
         mavonEditor.$img2Url(pos, url);
       });
+    },
+    addTag() {
+      this.tags.push(this.inputTag);
+      this.inputTag = "";
+    },
+    removeTag(item) {
+      this.tags.splice(this.tags.indexOf(item), 1);
+      this.tags = [...this.tags];
     }
   }
 };
@@ -147,5 +173,9 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   margin-top: 40px;
+}
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
