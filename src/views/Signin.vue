@@ -1,27 +1,53 @@
 <template>
     <div class="signin">
-        <h1>This is an signin page</h1>
+        <h1>ログイン</h1>
+        <p>アカウントをお持ちでない方はこちらから<a href="">新規アカウント登録</a>をお願いします</p>
         <div class="inputform">
-            <p>メールアドレス：<input type="text" name="mailAdress" size="30" maxlength="20"></p>
-            <p>パスワード：<input type="text" name="password" size="30" maxlength="20"></p>
-            <p><input type="button" name="loginButton" value="ログインする"></p>
+            <p class="idText">学籍番号</p>
+            <input type="text" class="textForm" name="mailAdress" size="22" maxlength="20">
+            <p class="passText">パスワード</p>
+            <input type="text" class="textForm" name="password" size="22" maxlength="20">
+            <p><input type="button" class="buttonForm" name="loginButton" value="ログインする"></p>
         </div>
     </div>
 </template>
 
 <style>
 .inputform{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /*  inputformの半分の大きさだけ左にずらす  */
     margin: 2em 1em;
     padding: 2em 1em;
-    width: 50%;
-    height: 100%;
-    background-color: #eee; /* 背景色 */
+    width: 300px;
+
+    background-color: #fff; /* 背景色 */
     border: 1px solid #ccc; /* 枠線 */
     border-radius: 10px; /*角の丸み*/
     text-align: center;
 }
-.inputform p{
-    
+.idText, .passText{
+    margin: 2em 0 0;
+    text-align: left;
+    white-space: pre-wrap;
 }
-    
+
+
+.textForm{
+    border: 1px solid #000;
+}
+
+.buttonForm{
+    padding: 0.2em;
+    margin: 1em 0 0;
+    border: 1px solid #000;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #eee;
+}
+
+.signin{
+    text-align: center;
+}
+
 </style>
