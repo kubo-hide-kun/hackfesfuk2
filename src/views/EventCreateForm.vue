@@ -1,26 +1,151 @@
 <template>
   <v-app>
-    <mavon-editor v-model="value" language="en" />
-  <button @click="print">ddd</button>
+    <v-container class="event-create-form">
+      <v-text-field label="イベント名" outlined></v-text-field>・詳細(MarkDown対応)
+      <mavon-editor v-model="value" language="ja" ref="md" @imgAdd="$imgAdd" />
+
+      <v-row>
+        <v-col cols="12" lg="6">
+          <v-dialog
+            ref="dialog1"
+            v-model="startDay"
+            :return-value.sync="date1"
+            persistent
+            width="290px"
+          >
+            <template v-slot:activator="{ on }">
+              <v-text-field v-model="date1" label="開始日" readonly v-on="on"></v-text-field>
+            </template>
+            <v-date-picker v-model="date1" scrollable>
+              <v-spacer></v-spacer>
+              <v-btn text color="primary" @click="startDay = false">Cancel</v-btn>
+              <v-btn text color="primary" @click="$refs.dialog1.save(date1)">OK</v-btn>
+            </v-date-picker>
+          </v-dialog>
+        </v-col>
+
+        <v-col cols="12" lg="6">
+          <v-dialog
+            ref="dialog3"
+            v-model="startTime"
+            :return-value.sync="time1"
+            persistent
+            width="290px"
+          >
+            <template v-slot:activator="{ on }">
+              <v-text-field
+                v-model="time1"
+                label="開始時刻"
+                readonly
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-time-picker v-if="startTime" v-model="time1" full-width>
+              <v-spacer></v-spacer>
+              <v-btn text color="primary" @click="startTime = false">Cancel</v-btn>
+              <v-btn text color="primary" @click="$refs.dialog3.save(time1)">OK</v-btn>
+            </v-time-picker>
+          </v-dialog>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols="12" lg="6">
+          <v-dialog
+            ref="dialog2"
+            v-model="endDay"
+            :return-value.sync="date2"
+            persistent
+            width="290px"
+          >
+            <template v-slot:activator="{ on }">
+              <v-text-field v-model="date2" label="終了日" readonly v-on="on"></v-text-field>
+            </template>
+            <v-date-picker v-model="date2" scrollable>
+              <v-spacer></v-spacer>
+              <v-btn text color="primary" @click="endDay = false">Cancel</v-btn>
+              <v-btn text color="primary" @click="$refs.dialog2.save(date2)">OK</v-btn>
+            </v-date-picker>
+          </v-dialog>
+        </v-col>
+
+        <v-col cols="12" lg="6">
+          <v-dialog
+            ref="dialog4"
+            v-model="endTime"
+            :return-value.sync="time2"
+            persistent
+            width="290px"
+          >
+            <template v-slot:activator="{ on }">
+              <v-text-field
+                v-model="time2"
+                label="終了時刻"
+                readonly
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-time-picker v-if="endTime" v-model="time2" full-width>
+              <v-spacer></v-spacer>
+              <v-btn text color="primary" @click="endTime = false">Cancel</v-btn>
+              <v-btn text color="primary" @click="$refs.dialog4.save(time2)">OK</v-btn>
+            </v-time-picker>
+          </v-dialog>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-app>
 </template>
  
 <script>
 import Vue from "vue";
-import mavonEditor from 'mavon-editor';
+import axios from "axios";
+import mavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 Vue.use(mavonEditor);
 
 export default {
   name: "app",
   data() {
-    return { value: "" }; 
+    return {
+      date1: new Date().toISOString().substr(0, 10),
+      date2: new Date().toISOString().substr(0, 10),
+      time1: null,
+      time2: null,
+      startDay: false,
+      endDay: false,
+      startTime: false,
+      endTime: false,
+      value: ""
+    };
   },
   methods: {
-    print() {
-      console.log(this.value);  // eslint-disable-line
-      console.log(this);  // eslint-disable-line
+    $imgAdd(pos, $file) {
+      var formdata = new FormData();
+      formdata.append("image", $file);
+      axios({
+        url: "https://hackfesfuk-api.azurewebsites.net/api/add-image",
+        method: "post",
+        data: formdata,
+        headers: { "Content-Type": "multipart/form-data" }
+      }).then(url => {
+        console.log(url); // eslint-disable-line
+        mavonEditor.$img2Url(pos, url);
+      });
     }
   }
 };
 </script> 
+<style scoped>
+.markdown-editor {
+  margin: 10px;
+  padding: 100px;
+  width: 90%;
+}
+.event-create-form {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 40px;
+}
+</style>
