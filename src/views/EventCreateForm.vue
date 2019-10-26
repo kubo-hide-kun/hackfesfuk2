@@ -135,6 +135,9 @@
           <v-btn color="blue" dark class="ma-2" @click="post">送信</v-btn>
         </v-row>
       </div>
+      <div v-else class="pie-chart">
+        <pie-chart :data="chartData" :options="chartOptions"></pie-chart>
+      </div>
     </v-container>
   </v-app>
 </template>
@@ -142,12 +145,16 @@
 <script>
 import Vue from "vue";
 import axios from "axios";
+import PieChart from "../components/PieChart";
 import mavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 Vue.use(mavonEditor);
 
 export default {
   name: "app",
+  components: {
+    PieChart
+  },
   data() {
     return {
       isForm: true,
@@ -174,7 +181,22 @@ export default {
         "test"
       ],
       limitAttendaces: "",
-      isPublic: false
+      isPublic: false,
+      chartOptions: {
+        hoverBorderWidth: 20
+      },
+      chartData: {
+        hoverBackgroundColor: "red",
+        hoverBorderWidth: 10,
+        labels: ["Green", "Red", "Blue"],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: ["#41B883", "#E46651", "#00D8FF"],
+            data: [1, 10, 5]
+          }
+        ]
+      }
     };
   },
   methods: {
@@ -203,7 +225,7 @@ export default {
     post() {
       // let url = "https://hackfesfuk-api.azurewebsites.net/api/create-event";
 
-      let XHR = new XMLHttpRequest();
+      // let XHR = new XMLHttpRequest();
       let FD = new FormData();
       FD.append("title",this.title);
       FD.append("description",this.description);
@@ -235,5 +257,13 @@ export default {
 .chip-list {
   display: flex;
   flex-wrap: wrap;
+}
+.pie-chart {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  weight: 514px;
 }
 </style>
