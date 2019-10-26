@@ -3,7 +3,7 @@
         <h1>新規アカウント登録</h1>
         <p>以下の項目を全て入力して「新規登録」ボタンをクリックしてください。<br>
         すでにアカウント登録をされている方は<a href="">こちらからログイン</a>できます。</p>
-        <form name="signup" action="" method="post">
+        <form name="signup" action="" method="get">
             <div class="signupform">
                 <p class="nameText">名前</p>
                 <input type="text" class="textForm" name="name" size="22" maxlength="20" required>
