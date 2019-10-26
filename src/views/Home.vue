@@ -37,6 +37,9 @@
                   </v-row>
                 </div>
               </v-img>
+              <EventCell />
+              <EventCell />
+              <EventCell />
             </v-flex>
 
             <v-flex class="pr-0 pl-0 flex-parallax" v-else>
@@ -65,6 +68,9 @@
                   </v-row>
                 </div>
               </v-parallax>
+              <EventCell />
+              <EventCell />
+              <EventCell />
             </v-flex>
           </v-app>
         </div>
@@ -74,7 +80,11 @@
 </template>
 
 <script>
+import EventCell from '../components/EventCell'
 export default {
+  components: {
+    EventCell
+  },
   data: () => ({
     dialog: false,
     mediaQuery: false,
@@ -140,7 +150,7 @@ export default {
 
 @media screen and (max-width: 1400px) {
   .flex-parallax {
-    height: 900px;
+    height: 1000px;
   }
   .parallax {
     height: 100%;
