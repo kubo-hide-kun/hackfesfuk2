@@ -170,16 +170,7 @@ export default {
       endTime: false,
       area: "",
       inputTag: "",
-      tags: [
-        "test1",
-        "test2",
-        "test3",
-        "test",
-        "test1",
-        "test2",
-        "test3",
-        "test"
-      ],
+      tags: [],
       limitAttendaces: "",
       isPublic: false,
       chartOptions: {
@@ -225,19 +216,20 @@ export default {
     post() {
       // let url = "https://hackfesfuk-api.azurewebsites.net/api/create-event";
 
-      // let XHR = new XMLHttpRequest();
-      let FD = new FormData();
-      FD.append("title",this.title);
-      FD.append("description",this.description);
-      FD.append("start",new Date(this.date1 + "T" + this.time1 + "+09:00"));
-      FD.append("end",new Date(this.date2 + "T" + this.time2 + "+09:00"));
-      FD.append("place",this.area);
-      FD.append("tags",this.tags.join(" "));
-      FD.append("limitAttendaces",this.limitAttendaces);
-      FD.append("public",this.isPublic);
+      const XHR = new XMLHttpRequest();
+      const FD = new FormData();
+      FD.append("title", this.title);
+      FD.append("description", this.description);
+      FD.append("start", new Date(this.date1 + "T" + this.time1 + "+09:00"));
+      FD.append("end", new Date(this.date2 + "T" + this.time2 + "+09:00"));
+      FD.append("place", this.area);
+      FD.append("tags", this.tags.join(" "));
+      FD.append("limitAttendaces", this.limitAttendaces);
+      FD.append("public", this.isPublic);
 
-      console.log(formData) //eslint-disable-line
-      
+      XHR.open("GET", "https://hackfesfuk-api.azurewebsites.net/api/edit-event");
+
+      XHR.send(FD);
     }
   }
 };
@@ -264,6 +256,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  weight: 514px;
 }
 </style>
