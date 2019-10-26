@@ -2,13 +2,15 @@
     <div class="signin">
         <h1>ログイン</h1>
         <p>アカウントをお持ちでない方はこちらから<a href="">新規アカウント登録</a>をお願いします</p>
-        <div class="inputform">
-            <p class="idText">学籍番号</p>
-            <input type="text" class="textForm" name="mailAdress" size="22" maxlength="20">
-            <p class="passText">パスワード</p>
-            <input type="text" class="textForm" name="password" size="22" maxlength="20">
-            <p><input type="button" class="buttonForm" name="loginButton" value="ログインする"></p>
-        </div>
+        <form name="signin" action="" method="post">
+            <div class="inputform">
+                <p class="idText">学籍番号</p>
+                <input type="text" class="textForm" name="number" size="22" maxlength="20" required>
+                <p class="passText">パスワード</p>
+                <input type="text" class="textForm" name="password" size="22" maxlength="20" required>
+                <p><input type="submit" class="buttonForm" name="loginButton" value="ログインする"></p>
+            </div>
+        </form>
     </div>
 </template>
 
