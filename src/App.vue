@@ -3,20 +3,20 @@
     <SignedHeader v-if="this.$store.state.isSigned"/>
     <DefaultHeader v-else/>
     <v-content>
-      <HelloWorld/>
+      <Home/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Home from './views/Home';
 import DefaultHeader from './components/DefaultHeader';
 import SignedHeader from './components/SignedHeader';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Home,
     DefaultHeader,
     SignedHeader
   },
