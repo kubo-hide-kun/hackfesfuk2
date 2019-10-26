@@ -4,7 +4,7 @@
       <v-list-item-content class="event-content">
         <div class="overline mb-4">{{owner}}</div>
         <v-list-item-title class="headline mb-1">
-          <a>{{title}}</a>
+          <a><b>{{title}}</b></a>
         </v-list-item-title>
           開催場所: {{place}}<span/>{{startTime}} ~ {{endTime}}
         <div>
@@ -78,7 +78,7 @@ export default {
 }
 @media screen and (max-width: 1400px){
   .event-content {
-  font-size: 0.5em;
+  font-size: 0.85em;
 }
 }
 </style>
