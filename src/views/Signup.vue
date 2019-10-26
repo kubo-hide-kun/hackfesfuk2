@@ -2,16 +2,16 @@
     <div class="signup">
         <h1>新規アカウント登録</h1>
         <p>以下の項目を全て入力して「新規登録」ボタンをクリックしてください。<br>
-        すでにアカウント登録をされている方は<a href="Signin.vue">こちらからログイン</a>できます。</p>
+        すでにアカウント登録をされている方は<a href="">こちらからログイン</a>できます。</p>
         <form name="signup" action="" method="post">
             <div class="signupform">
                 <p class="nameText">名前</p>
-                <input type="text" class="textForm" name="username" size="22" maxlength="20" required>
+                <input type="text" class="textForm" name="name" size="22" maxlength="20" required>
                 <p class="idText">学籍番号</p>
-                <input type="text" class="textForm" name="id" size="22" maxlength="20" required>
+                <input type="text" class="textForm" name="number" size="22" maxlength="20" required>
                 <p class="passText">パスワード</p>
                 <input type="text" class="textForm" name="password" size="22" maxlength="20" required>
-                <p><input type="submit" class="buttonForm" name="loginButton" value="新規登録"></p>
+                <p><input type="submit" class="buttonForm" name="signupButton" value="新規登録"></p>
             </div>
         </form>
     </div>
