@@ -2,7 +2,7 @@
     <div class="signup">
         <h1>新規アカウント登録</h1>
         <p>以下の項目を全て入力して「新規登録」ボタンをクリックしてください。<br>
-        すでにアカウント登録をされている方は<a href="">こちらからログイン</a>できます。</p>
+        すでにアカウント登録をされている方は<router-link to="signin">こちらからログイン</router-link>できます。</p>
         <form name="signup" action="" method="get">
             <div class="signupform">
                 <p class="nameText">名前</p>
