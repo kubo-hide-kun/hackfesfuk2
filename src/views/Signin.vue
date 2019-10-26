@@ -1,7 +1,7 @@
 <template>
     <div class="signin">
         <h1>ログイン</h1>
-        <p>アカウントをお持ちでない方はこちらから<a href="">新規アカウント登録</a>をお願いします</p>
+        <p>アカウントをお持ちでない方はこちらから<router-link to="signup">新規アカウント登録</router-link>をお願いします</p>
         <form name="signin" action="" method="get">
             <div class="inputform">
                 <p class="idText">学籍番号</p>
