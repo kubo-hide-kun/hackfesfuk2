@@ -5,15 +5,43 @@
         <div id="app" class="pa-0 ma-0">
           <v-app id="inspire" class="pa-0 ma-0">
             <svg height="80" wlass="pa-0 ma-0">
-              <ellipse cx="50%" cy="30%" rx="60%" ry="70%" fill="#41BFDD" />
+              <ellipse cx="50%" cy="30%" rx="60%" ry="70%" fill="#1867c0" />
               <g font-family="sans-serif" fill="white" font-size="200%">
                 <text x="50%" y="65%" text-anchor="middle">Sample Name</text>
               </g>
             </svg>
-            <v-flex class="pr-0 pl-0 flex-parallax">
+
+            <v-flex v-if="mediaQuery" class="pr-0 pl-0 flex-parallax">
+              <v-img
+                class="pr-5 pl-5 pt-0 parallax"
+                src="https://drive.google.com/uc?export=view&id=1TWZJTRd6uNoDk6Ffr2Qd5g96zFJdShbe"
+              >
+                <div>
+                  <v-row>
+                    <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
+                      <v-flex>
+                        <v-card height="300px" width="400px">
+                          <v-img
+                            :src="card.src"
+                            class="white--text"
+                            height="200px"
+                            width="100%"
+                            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                          >
+                            <v-card-title class="fill-height align-end" v-text="card.title"></v-card-title>
+                          </v-img>
+                          <v-card-text class="text--primary" v-text="card.text"></v-card-text>
+                        </v-card>
+                      </v-flex>
+                    </v-col>
+                  </v-row>
+                </div>
+              </v-img>
+            </v-flex>
+
+            <v-flex class="pr-0 pl-0 flex-parallax" v-else>
               <v-parallax
                 class="pr-5 pl-5 pt-0 parallax"
-                height="100%"
                 src="https://drive.google.com/uc?export=view&id=1TWZJTRd6uNoDk6Ffr2Qd5g96zFJdShbe"
               >
                 <div>
@@ -38,29 +66,6 @@
                 </div>
               </v-parallax>
             </v-flex>
-            <br />
-
-            <v-flex class="mt-n12 pt-5 pr-3 pl-3" elevation="12"></v-flex>
-            <br />
-
-            <v-flex class="mt-n12 pt-10 pr-3 pl-3" elevation="12" z-index="10" absolute="ture">
-              <v-card class="pr-3 pl-3">
-                <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
-                  <v-timeline-item
-                    v-for="(item, i) in items"
-                    :key="i"
-                    :color="item.color"
-                    :icon="item.icon"
-                    fill-dot
-                  >
-                    <v-card :color="item.color" dark>
-                      <v-card-title class="title" v-text="item.title"></v-card-title>
-                      <v-card-text class="white text--primary" v-text="item.text"></v-card-text>
-                    </v-card>
-                  </v-timeline-item>
-                </v-timeline>
-              </v-card>
-            </v-flex>
           </v-app>
         </div>
       </v-flex>
@@ -72,60 +77,36 @@
 export default {
   data: () => ({
     dialog: false,
+    mediaQuery: false,
     cards: [
       {
-        title: "プロジェクトの進行度を可視化",
-        src:
-          "https://drive.google.com/uc?export=view&id=1PFl6xkPjJM8SajaPz6FyaVFn0zZYp4i9",
-        text:
-          "独自のアルゴリズムでチームの開発の進行状況を数値化し、完成までの逆算を行います。"
-      },
-      {
-        title: "開発スケジュールの作成",
+        title: "勉強会の作成/告知",
         src:
           "https://drive.google.com/uc?export=view&id=1MGgyDgQ1XwfC9u_WoCFlvXeQyYZlOm8B",
         text:
-          "カレンダー機能で用途に合わせたタスクが追加できます、追加したタスクはフィルタ検索機能によりタスク確認の効率化が行えます。"
+          "学内の学生に対してイベントの作成及び告知が可能です。イベント状況はこのサイトで確認可能です。"
       },
       {
-        title: "チーム間のヒヤリング",
+        title: "より詳細の参加状況",
         src:
           "https://drive.google.com/uc?export=view&id=1rDpAT-QK6hzex-6VV35wTpevAbJnpdyG",
         text:
-          "個人のタスクに遅延が起きた場合やすれ違いの際に、全員に情報が共有されます。ミスしたタスクはチームメンバーから助太刀をしてもらいましょう！"
-      }
-    ],
-    items: [
-      {
-        color: "red lighten-2",
-        icon: "mdi-star",
-        title: "プロジェクトを立ち上げよう！",
-        text:
-          "メイン画面にある左上のプロジェクト立ち上げボタンからプロジェクト名を決めて、参加メンバーを追加しよう！"
+          "各学生の既読状況を取得する事によって学内の人のイベントへの参加状況を既存サービスより確認出来ます。"
       },
       {
-        color: "purple darken-1",
-        icon: "mdi-book-variant",
-        title: "開発スケジュールを作成しよう！",
+        title: "コミュニティの属性を可視化",
+        src:
+          "https://drive.google.com/uc?export=view&id=1PFl6xkPjJM8SajaPz6FyaVFn0zZYp4i9",
         text:
-          "プロジェクト画面にあるカレンダー機能を使ってスケジュールをいつでも編集しよう！完成したスケジュールはチームメンバーとリアルタイムで共有できる！"
-      },
-      {
-        color: "green lighten-1",
-        icon: "mdi-airballoon",
-        title: "チーム全体の開発進行度を見渡そう！",
-        text:
-          "各プロジェクトメイン画面に開発進行度はしょーかちゃんが開発の進行状況を解析し数値化したもの！タスクが遅れた場合はしょーかちゃんがチームメンバー全員に知らせてくれます！"
-      },
-      {
-        color: "indigo",
-        icon: "mdi-buffer",
-        title: "フィルタ検索機能でタスクを管理しよう！",
-        text:
-          "左上にあるフィルタ検索機能からプロジェクトの確認とタスクを確認しよう！終了したタスクは完了ボタンんを忘れずに！"
+          "イベント作成者はコミュニティがどのようなイベントを求めているのかが確認できます。"
       }
     ]
-  })
+  }),
+  mounted() {
+    setInterval(() => {
+      this.mediaQuery = matchMedia("(max-width: 1400px)").matches; // eslint-disable-line
+    }, 500);
+  }
 };
 </script>
 
@@ -159,7 +140,7 @@ export default {
 
 @media screen and (max-width: 1400px) {
   .flex-parallax {
-    height: 1000px;
+    height: 900px;
   }
   .parallax {
     height: 100%;
