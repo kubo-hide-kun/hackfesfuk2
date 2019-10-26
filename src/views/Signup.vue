@@ -10,6 +10,7 @@
       <div id="errorMessage"></div>
       <form
         name="signup"
+        id="signupform"
         action="https://hackfesfuk-api.azurewebsites.net/api/create-user"
         method="get"
       >
@@ -50,10 +51,8 @@
 <script>
 export default {
   mounted() {
-    var submitButton = document.getElementById("signupButton");
-    submitButton.addEventListener(
-      "submit",
-      function() {
+    var submitButton = document.getElementById("signupform");
+    submitButton.onsubmit=function() {
         /* 'inpassword' というid属性を持つ要素と 'checkpassword' というid属性を持つ要素を取得 */
         var input1 = document.getElementById("inpassword");
         var input2 = document.getElementById("checkpassword");
@@ -62,13 +61,35 @@ export default {
           // エラー処理
           document.getElementById("errorMessage").innerHTML =
           "入力値にエラーがあります";
+          return false;
         } else {
           // passwordというidを持つ要素にinpasswordの値を代入
           document.getElementById("password").value = input1.value;
+          return true;
         }
-      },
-      false
-    );
+      };
+    // submitButton.addEventListener(
+    //   "submit",
+    //   function(event) {
+    //     /* 'inpassword' というid属性を持つ要素と 'checkpassword' というid属性を持つ要素を取得 */
+    //     var input1 = document.getElementById("inpassword");
+    //     var input2 = document.getElementById("checkpassword");
+    //     // パスワードと再入力したパスワードが不一致なら
+    //     if (input1.value != input2.value) {
+    //       // エラー処理
+    //       document.getElementById("errorMessage").innerHTML =
+    //       "入力値にエラーがあります";
+    //       event.preventDefault();
+    //       console.log("error");
+    //     } else {
+    //       // passwordというidを持つ要素にinpasswordの値を代入
+    //       document.getElementById("password").value = input1.value;
+    //       console.log("success");
+    //     }
+    //     while(1);
+    //   },
+    //   false
+    // );
   }
 };
 </script>
