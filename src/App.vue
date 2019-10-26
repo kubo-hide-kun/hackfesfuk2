@@ -16,7 +16,7 @@
     </v-app-bar>
 
     <v-content>
-      <PropsPractice msg="sample"/>
+      <PropsPractice :msg="msg"/>
     </v-content>
   </v-app>
 </template>
@@ -30,7 +30,7 @@ export default {
     PropsPractice,
   },
   data: () => ({
-    //
+    msg : "test"
   }),
 };
 </script>
