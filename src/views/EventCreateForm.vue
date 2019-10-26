@@ -99,6 +99,11 @@
           <v-chip class="ma-1" small close @click:close="removeTag(tag)">{{tag}}</v-chip>
         </div>
       </div>
+      <v-text-field v-model="limitAttendaces" type="number" label="最大参加者数" outlined class="ma-2"></v-text-field>
+      <v-row>
+        <v-switch v-model="isPublic" :label="isPublic ? '公開する' : '公開しない'" class="ma-2"></v-switch>
+        <v-btn color="blue" dark class="ma-2" @click="post">送信</v-btn>
+      </v-row>
     </v-container>
   </v-app>
 </template>
@@ -134,7 +139,9 @@ export default {
         "test2",
         "test3",
         "test"
-      ]
+      ],
+      limitAttendaces: "",
+      isPublic: false
     };
   },
   methods: {
@@ -152,12 +159,17 @@ export default {
       });
     },
     addTag() {
+      if(!this.inputTag) return;
       this.tags.push(this.inputTag);
       this.inputTag = "";
     },
     removeTag(item) {
       this.tags.splice(this.tags.indexOf(item), 1);
       this.tags = [...this.tags];
+    },
+    post() {
+      let url = "https://hackfesfuk-api.azurewebsites.net/api/create-event";
+      console.log(url);　//eslint-disable-line
     }
   }
 };
