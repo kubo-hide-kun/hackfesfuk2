@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <SignedHeader/>
+    <SignedHeader v-if="this.$store.state.isSigned"/>
+    <DefaultHeader v-else/>
     <v-content>
       <HelloWorld/>
     </v-content>
