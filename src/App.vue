@@ -1,20 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
-
+    <SignedHeader v-if="this.$store.state.isSigned"/>
+    <DefaultHeader v-else/>
     <v-content>
       <HelloWorld/>
     </v-content>
@@ -23,11 +10,15 @@
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import DefaultHeader from './components/DefaultHeader';
+import SignedHeader from './components/SignedHeader';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
+    DefaultHeader,
+    SignedHeader
   },
   data: () => ({
     //
