@@ -2,11 +2,20 @@
   <v-card class="mx-auto event-card" outlined width="95%">
     <v-list-item three-line>
       <v-list-item-content class="event-content">
-        <div class="overline mb-4">{{owner}}</div>
+        <div class=" mb-2"><a>{{owner}}</a></div>
         <v-list-item-title class="headline mb-1">
           <a><b>{{title}}</b></a>
         </v-list-item-title>
-          開催場所: {{place}}<span/>{{startTime}} ~ {{endTime}}
+          <div v-if="nowAttendances >= limitAttendances">
+            参加人数: <b><font color="#ff3300">{{nowAttendances}}/{{limitAttendances}}</font></b>
+          </div>
+          <div v-else>
+            参加人数: {{nowAttendances}}/{{limitAttendances}}
+          </div>
+          <span/>
+          開催場所: {{place}}
+          <span/>
+          {{startTime}} ~ {{endTime}}
         <div>
           <div v-for="(tag,key) in tags" :key="key" class="tag-chips">
             <v-chip class="ma-1" small>{{tag}}</v-chip>
@@ -26,12 +35,12 @@ export default {
       default: "タイトル"
     },
     start: {
-      type: Date,
-      default: new Date("2001-08-02T10:45:23.5+09:00")
+      type: String,
+      default: "2001-08-02T10:45:23.5+09:00"
     },
     end: {
       type: Date,
-      default: new Date("2001-08-02T17:00:00+09:00")
+      default: "2001-08-02T17:00:00+09:00"
     },
     place: {
       type: String,
@@ -55,7 +64,7 @@ export default {
     }
   },
   data: () => ({
-    starttime: "",
+    startTime: "",
     endTime: ""
   }),
   mounted() {

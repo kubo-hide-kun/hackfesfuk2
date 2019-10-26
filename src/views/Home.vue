@@ -13,7 +13,7 @@
 
             <v-flex v-if="mediaQuery" class="pr-0 pl-0 flex-parallax">
               <v-img
-                class="pr-5 pl-5 pt-0 parallax"
+                class="pr-5 pl-5 pt-0"
                 src="https://drive.google.com/uc?export=view&id=1TWZJTRd6uNoDk6Ffr2Qd5g96zFJdShbe"
               >
                 <div>
@@ -37,14 +37,23 @@
                   </v-row>
                 </div>
               </v-img>
-              <EventCell />
-              <EventCell />
-              <EventCell />
+              <div v-for="(event,key) in events" :key="key">
+                <EventCell
+                  :title="event.title"
+                  :start="event.start"
+                  :end="event.end"
+                  :place="event.place"
+                  :tags="event.tags"
+                  :owner="event.owner"
+                  :nowAttendances="event.nowAttendances"
+                  :limitAttendances="event.limitAttendances"
+                />
+              </div>
             </v-flex>
 
             <v-flex class="pr-0 pl-0 flex-parallax" v-else>
               <v-parallax
-                class="pr-5 pl-5 pt-0 parallax"
+                class="pr-5 pl-5 pt-0"
                 src="https://drive.google.com/uc?export=view&id=1TWZJTRd6uNoDk6Ffr2Qd5g96zFJdShbe"
               >
                 <div>
@@ -68,9 +77,18 @@
                   </v-row>
                 </div>
               </v-parallax>
-              <EventCell />
-              <EventCell />
-              <EventCell />
+              <div v-for="(event,key) in events" :key="key">
+                <EventCell
+                  :title="event.title"
+                  :start="event.start"
+                  :end="event.end"
+                  :place="event.place"
+                  :tags="event.tags"
+                  :owner="event.owner"
+                  :nowAttendances="event.nowAttendances"
+                  :limitAttendances="event.limitAttendances"
+                />
+              </div>
             </v-flex>
           </v-app>
         </div>
@@ -81,13 +99,16 @@
 
 <script>
 import EventCell from '../components/EventCell'
+import SampleEvents from '../SampleEvents'
+
 export default {
   components: {
     EventCell
   },
   data: () => ({
     dialog: false,
-    mediaQuery: false,
+    mediaQuery: true,
+    events: [],
     cards: [
       {
         title: "勉強会の作成/告知",
@@ -113,8 +134,10 @@ export default {
     ]
   }),
   mounted() {
+    this.events = SampleEvents;
+    // console.log(SampleEvents); // eslint-disable-line
     setInterval(() => {
-      this.mediaQuery = matchMedia("(max-width: 1400px)").matches; // eslint-disable-line
+      this.mediaQuery = matchMedia("(max-width: 1400px)").matches;
     }, 500);
   }
 };
@@ -151,10 +174,6 @@ export default {
 @media screen and (max-width: 1400px) {
   .flex-parallax {
     height: 1000px;
-  }
-  .parallax {
-    height: 100%;
-    width: auto;
   }
 }
 </style>>
