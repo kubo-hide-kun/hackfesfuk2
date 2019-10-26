@@ -2,7 +2,7 @@
     <div class="signin">
         <h1>ログイン</h1>
         <p>アカウントをお持ちでない方はこちらから<a href="">新規アカウント登録</a>をお願いします</p>
-        <form name="signin" action="" method="post">
+        <form name="signin" action="" method="get">
             <div class="inputform">
                 <p class="idText">学籍番号</p>
                 <input type="text" class="textForm" name="number" size="22" maxlength="20" required>
