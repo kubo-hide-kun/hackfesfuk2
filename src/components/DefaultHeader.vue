@@ -1,33 +1,33 @@
 <template>
   <v-app-bar app>
     <v-toolbar-title class="headline">
+    <router-link to="/">
       <span>Sample Name</span>
+    </router-link>
     </v-toolbar-title>
     <v-spacer />
-    <v-btn
-      text
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
-    >
-      <span class="mr-2">ログイン</span>
-    </v-btn>
+    <router-link to="signin">
+      <v-btn text target="_blank">
+        <span class="mr-2">ログイン</span>
+      </v-btn>
+    </router-link>
   </v-app-bar>
 </template>
 
 <script>
 export default {
-  name: 'DefaultHeader',
+  name: "DefaultHeader",
   data: () => ({
     //
-  }),
+  })
 };
 </script>
 
 <style scoped>
 .headline {
-  margin: 0 20px; 
+  margin: 0 20px;
 }
 .searchForm {
-  width: 425px; 
+  width: 425px;
 }
 </style>
