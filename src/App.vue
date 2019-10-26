@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <DefaultHeader/>
+    <SignedHeader/>
     <v-content>
       <HelloWorld/>
     </v-content>
@@ -10,12 +10,14 @@
 <script>
 import HelloWorld from './components/HelloWorld';
 import DefaultHeader from './components/DefaultHeader';
+import SignedHeader from './components/SignedHeader';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    DefaultHeader
+    DefaultHeader,
+    SignedHeader
   },
   data: () => ({
     //
