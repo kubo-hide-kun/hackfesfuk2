@@ -142,8 +142,10 @@ export default {
   },
   methods: {
     setSignedFlag() {
-      this.$store.state.isSigned = fetch("https://hackfesfuk-api.azurewebsites.net/api/signed-in").then(
-        response => response.status == 200
+      fetch("https://hackfesfuk-api.azurewebsites.net/api/signed-in").then(
+        response => {
+          this.$store.state.isSigned = response.status==200
+        }
       );
       this.$store.state.isSigned = fetch("https://hackfesfuk-api.azurewebsites.net/api/signed-in"); 
     }
