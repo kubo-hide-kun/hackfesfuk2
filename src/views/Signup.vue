@@ -70,28 +70,6 @@ export default {
           return true;
         }
       };
-    // submitButton.addEventListener(
-    //   "submit",
-    //   function(event) {
-    //     /* 'inpassword' というid属性を持つ要素と 'checkpassword' というid属性を持つ要素を取得 */
-    //     var input1 = document.getElementById("inpassword");
-    //     var input2 = document.getElementById("checkpassword");
-    //     // パスワードと再入力したパスワードが不一致なら
-    //     if (input1.value != input2.value) {
-    //       // エラー処理
-    //       document.getElementById("errorMessage").innerHTML =
-    //       "入力値にエラーがあります";
-    //       event.preventDefault();
-    //       console.log("error");
-    //     } else {
-    //       // passwordというidを持つ要素にinpasswordの値を代入
-    //       document.getElementById("password").value = input1.value;
-    //       console.log("success");
-    //     }
-    //     while(1);
-    //   },
-    //   false
-    // );
   }
 };
 </script>
@@ -114,7 +92,7 @@ export default {
   background-size: 60px 60px;
   background-repeat: repeat;
   bottom: 0;
-  height: 100%;
+  height: 120%;
 }
 
 .explain {
@@ -143,20 +121,24 @@ h1 {
 .nameText,
 .idText,
 .passText {
-  margin: 2em 0 0;
-  text-align: left;
-  white-space: pre-wrap;
+    margin: 2em 0 0;
+    text-align: left;
+    color: rgb(70,150,250);
+    font-weight: bold;
+    white-space: pre-wrap;
 }
 .textForm {
   border: 1px solid #000;
 }
 .buttonForm {
-  padding: 0.2em;
-  margin: 1em 0 0;
-  border: 1px solid #000;
-  border-radius: 5px;
-  text-align: center;
-  background-color: #eee;
+    padding: 0.2em 0.8em;
+    margin: 1em 0 0;
+    border: 1px solid rgb(120,200,250);
+    border-radius: 5px;
+    text-align: center;
+    color: rgb(255,255,255);
+    font-weight: bold;
+    background-color: rgb(70,150,250);
 }
 .signup {
   text-align: center;
