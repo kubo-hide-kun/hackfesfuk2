@@ -176,14 +176,21 @@ export default {
       chartOptions: {
         hoverBorderWidth: 20
       },
-      sampleWants: ["A","A","B","C","B","B","D","D","B"],
+      sampleWants: ["A", "A", "B", "C", "B", "B", "D", "D", "B"],
       chartData: {
         hoverBackgroundColor: "red",
         hoverBorderWidth: 10,
         labels: [],
         datasets: [
           {
-            backgroundColor: ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#ff6699"],
+            backgroundColor: [
+              "#3366cc",
+              "#dc3912",
+              "#ff9900",
+              "#109618",
+              "#990099",
+              "#ff6699"
+            ],
             data: []
           }
         ]
@@ -191,19 +198,18 @@ export default {
     };
   },
   mounted() {
-
     let wantCnt = this.sampleWants.reduce((initialCnt, want) => {
-      initialCnt[want] = (initialCnt[want]) ? initialCnt[want]+1 : 1;
+      initialCnt[want] = initialCnt[want] ? initialCnt[want] + 1 : 1;
       return initialCnt;
-    },{});
+    }, {});
 
-    this.chartData.labels = Object.keys(wantCnt).sort(
-      (a,b) => wantCnt[a] < wantCnt[b] ? 1 : -1
+    this.chartData.labels = Object.keys(wantCnt).sort((a, b) =>
+      wantCnt[a] < wantCnt[b] ? 1 : -1
     );
-    
+
     this.chartData.datasets[0].data = this.chartData.labels.map(
       label => wantCnt[label]
-    )
+    );
   },
   methods: {
     $imgAdd(pos, $file) {
@@ -242,7 +248,19 @@ export default {
       FD.append("limitAttendaces", this.limitAttendaces);
       FD.append("public", this.isPublic);
 
-      XHR.open("GET", "https://hackfesfuk-api.azurewebsites.net/api/edit-event");
+      XHR.open(
+        "GET",
+        "https://hackfesfuk-api.azurewebsites.net/api/edit-event"
+      );
+      XHR.onreadystatechange = function() {
+        if (XHR.readyState != 4) {
+          // リクエスト中
+        } else if (XHR.status != 200) {
+          // 失敗
+        } else {
+          this.$router.push('/');
+        }
+      };
 
       XHR.send(FD);
     }

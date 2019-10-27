@@ -24,6 +24,11 @@ const routes = [
     path: '/create',
     name: 'create',
     component: () => import('../views/EventCreateForm.vue')
+  },
+  {
+    path: '/detail',
+    name: 'detail',
+    component: () => import('../views/Detail.vue')
   }
 ]
 
