@@ -4,6 +4,7 @@ export default {
   props: ["data", "options"],
   mounted() {
     this.renderChart(this.data, {
+      maintainAspectRatio:false,
       borderWidth: "10px",
       hoverBackgroundColor: "red",
       hoverBorderWidth: "10px"

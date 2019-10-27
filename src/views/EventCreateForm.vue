@@ -136,7 +136,7 @@
         </v-row>
       </div>
       <div v-else class="pie-chart">
-        <pie-chart :data="chartData" :options="chartOptions"></pie-chart>
+        <pie-chart :data="chartData" :options="chartOptions" :height="514" :width="514"></pie-chart>
       </div>
     </v-container>
   </v-app>
@@ -176,19 +176,34 @@ export default {
       chartOptions: {
         hoverBorderWidth: 20
       },
+      sampleWants: ["A","A","B","C","B","B","D","D","B"],
       chartData: {
         hoverBackgroundColor: "red",
         hoverBorderWidth: 10,
-        labels: ["Green", "Red", "Blue"],
+        labels: [],
         datasets: [
           {
-            label: "Data One",
-            backgroundColor: ["#41B883", "#E46651", "#00D8FF"],
-            data: [1, 10, 5]
+            backgroundColor: ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#ff6699"],
+            data: []
           }
         ]
       }
     };
+  },
+  mounted() {
+
+    let wantCnt = this.sampleWants.reduce((initialCnt, want) => {
+      initialCnt[want] = (initialCnt[want]) ? initialCnt[want]+1 : 1;
+      return initialCnt;
+    },{});
+
+    this.chartData.labels = Object.keys(wantCnt).sort(
+      (a,b) => wantCnt[a] < wantCnt[b] ? 1 : -1
+    );
+    
+    this.chartData.datasets[0].data = this.chartData.labels.map(
+      label => wantCnt[label]
+    )
   },
   methods: {
     $imgAdd(pos, $file) {
