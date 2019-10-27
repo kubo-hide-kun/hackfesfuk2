@@ -183,7 +183,49 @@ export default {
       chartOptions: {
         hoverBorderWidth: 20
       },
-      sampleWants: ["A", "A", "B", "C", "B", "B", "D", "D", "B"],
+      sampleWants: [
+        "React",
+        "React",
+        "Vue",
+        "React",
+        "React",
+        "Vue",
+        "Python",
+        "React",
+        "Python",
+        "C#",
+        "C#",
+        "C#",
+        "Golang",
+        "Kotlin",
+        "Golang",
+        "Kotlin",
+        "React",
+        "React",
+        "Vue",
+        "React",
+        "React",
+        "Vue",
+        "Python",
+        "React",
+        "Python",
+        "C#",
+        "Golang",
+        "Kotlin",
+        "React",
+        "Python",
+        "C#",
+        "C#",
+        "C#",
+        "Golang",
+        "Kotlin",
+        "Golang",
+        "Kotlin",
+        "React",
+        "React",
+        "Vue",
+        "React",
+      ],
       chartData: {
         hoverBackgroundColor: "red",
         hoverBorderWidth: 10,
@@ -196,7 +238,8 @@ export default {
               "#ff9900",
               "#109618",
               "#990099",
-              "#ff6699"
+              "#ff6699",
+              "#808080"
             ],
             data: []
           }
@@ -213,7 +256,8 @@ export default {
     this.chartData.labels = Object.keys(wantCnt).sort((a, b) =>
       wantCnt[a] < wantCnt[b] ? 1 : -1
     );
-
+    this.chartData.labels.push("その為");
+    wantCnt["その為"] = 7;
     this.chartData.datasets[0].data = this.chartData.labels.map(
       label => wantCnt[label]
     );
@@ -257,7 +301,7 @@ export default {
 
       XHR.open(
         "GET",
-        "https://hackfesfuk-api.azurewebsites.net/api/edit-event"
+        "https://hackfesfuk-api.azurewebsites.net/api/create-event"
       );
       XHR.onreadystatechange = function() {
         if (XHR.readyState != 4) {
@@ -265,18 +309,21 @@ export default {
         } else if (XHR.status != 200) {
           // 失敗
         } else {
-          this.$router.push('/');
+          this.$router.push("/");
         }
       };
 
       XHR.send(FD);
     },
     addTags(tag) {
-      if(this.checkTag(tag)) this.$store.state.myWants.push(tag);
-      else this.$store.state.myWants = this.$store.state.myWants.filter(want => want!==tag)
+      if (this.checkTag(tag)) this.$store.state.myWants.push(tag);
+      else
+        this.$store.state.myWants = this.$store.state.myWants.filter(
+          want => want !== tag
+        );
     },
     checkTag(tag) {
-      return this.$store.state.myWants.indexOf(tag) == -1
+      return this.$store.state.myWants.indexOf(tag) == -1;
     }
   }
 };
