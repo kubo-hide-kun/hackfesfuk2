@@ -135,10 +135,20 @@ export default {
   }),
   mounted() {
     this.events = SampleEvents;
-    // console.log(SampleEvents); // eslint-disable-line
+    this.setSignedFlag();
     setInterval(() => {
       this.mediaQuery = matchMedia("(max-width: 1400px)").matches;
     }, 500);
+  },
+  methods: {
+    setSignedFlag() {
+      fetch("https://hackfesfuk-api.azurewebsites.net/api/signed-in").then(
+        response => {
+          this.$store.state.isSigned = response.status==200
+        }
+      );
+      this.$store.state.isSigned = fetch("https://hackfesfuk-api.azurewebsites.net/api/signed-in"); 
+    }
   }
 };
 </script>

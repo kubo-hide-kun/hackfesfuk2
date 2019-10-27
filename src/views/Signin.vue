@@ -8,7 +8,7 @@
                     <p class="idText">学籍番号</p>
                     <input type="text" class="textForm" name="number" size="22" maxlength="20" required>
                     <p class="passText">パスワード</p>
-                    <input type="text" class="textForm" name="password" size="22" maxlength="20" required>
+                    <input type="password" class="textForm" name="password" size="22" maxlength="20" required>
                     <p><input type="submit" class="buttonForm" name="loginButton" value="ログインする"></p>
                 </div>
             </form>
@@ -27,7 +27,7 @@
 	background-size: 60px 60px;
     background-repeat: repeat;
     bottom:0;
-    height:120%;
+    height:100%;
 }
 
 .explain{
@@ -48,6 +48,7 @@ h1 {
     margin: 2em 1em;
     padding: 2em 1em;
     width: 300px;
+
     background-color: #fff; /* 背景色 */
     border: 1px solid #ccc; /* 枠線 */
     border-radius: 10px; /*角の丸み*/
@@ -56,8 +57,6 @@ h1 {
 .idText, .passText{
     margin: 2em 0 0;
     text-align: left;
-    color: rgb(70,150,250);
-    font-weight: bold;
     white-space: pre-wrap;
 }
 
@@ -67,14 +66,12 @@ h1 {
 }
 
 .buttonForm{
-    padding: 0.2em 0.8em;
+    padding: 0.2em;
     margin: 1em 0 0;
-    border: 1px solid rgb(120,200,250);
+    border: 1px solid #000;
     border-radius: 5px;
     text-align: center;
-    color: rgb(255,255,255);
-    font-weight: bold;
-    background-color: rgb(70,150,250);
+    background-color: #eee;
 }
 
 .signin{

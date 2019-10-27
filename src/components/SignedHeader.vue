@@ -1,33 +1,33 @@
 <template>
   <v-app-bar app>
-    <v-toolbar-title class="headline">
-      <span>Sample Name</span>
-    </v-toolbar-title>
+    <router-link to="/">
+      <v-toolbar-title class="headline">
+        <span>Sample Name</span>
+      </v-toolbar-title>
+    </router-link>
     <v-spacer />
-    <v-btn
-      text
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
-    >
-      <span class="mr-2">イベント作成</span>
-    </v-btn>
+    <router-link to="create">
+      <v-btn text target="_blank">
+        <span class="mr-2">イベント作成</span>
+      </v-btn>
+    </router-link>
   </v-app-bar>
 </template>
 
 <script>
 export default {
-  name: 'SignedHeader',
+  name: "SignedHeader",
   data: () => ({
     //
-  }),
+  })
 };
 </script>
 
 <style scoped>
 .headline {
-  margin: 0 20px; 
+  margin: 0 20px;
 }
 .searchForm {
-  width: 425px; 
+  width: 425px;
 }
 </style>

@@ -4,7 +4,7 @@ export default [
       start:"2001-09-02T10:45:23.5+09:00",
       end:"2001-09-02T17:30:00+09:00",
       place:"セミナールームB",
-      tags:["Twitter"],
+      tags:["Twitter","機械学習"],
       owner:"Aさん",
       nowAttendances:129,
       limitAttendances:334
