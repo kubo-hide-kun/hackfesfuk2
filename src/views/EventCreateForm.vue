@@ -126,7 +126,14 @@
         </div>
         <div class="chip-list">
           <div v-for="(tag,key) in tags" :key="key" class="tag-chips">
-            <v-chip class="ma-1" small close @click:close="removeTag(tag)">{{tag}}</v-chip>
+            <v-chip
+              class="ma-1"
+              small
+              close
+              :color="checkTag(tag)?'':'orange'"
+              @click="addTags(tag)"
+              @click:close="removeTag(tag)"
+            >{{tag}}</v-chip>
           </div>
         </div>
         <v-text-field v-model="limitAttendaces" type="number" label="最大参加者数" outlined class="ma-2"></v-text-field>
@@ -263,6 +270,13 @@ export default {
       };
 
       XHR.send(FD);
+    },
+    addTags(tag) {
+      if(this.checkTag(tag)) this.$store.state.myWants.push(tag);
+      else this.$store.state.myWants = this.$store.state.myWants.filter(want => want!==tag)
+    },
+    checkTag(tag) {
+      return this.$store.state.myWants.indexOf(tag) == -1
     }
   }
 };

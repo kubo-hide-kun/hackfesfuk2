@@ -21,7 +21,12 @@
             <p>開催場所: {{place}}</p>
             <div class="chip-list">
               <div v-for="(tag,key) in tags" :key="key" class="tag-chips">
-                <v-chip class="ma-1" small>{{tag}}</v-chip>
+                <v-chip
+                  class="ma-1"
+                  small
+                  :color="checkTag(tag)?'':'orange'"
+                  @click="addTags(tag)"
+                >{{tag}}</v-chip>
               </div>
             </div>
           </v-list-item-subtitle>
@@ -70,6 +75,15 @@ export default {
     this.startDate = moment(this.start).format("MM月 DD日");
     this.startTime = moment(this.start).format("HH:mm");
     this.endTime = moment(this.end).format("HH:mm");
+  },
+  methods: {
+    addTags(tag) {
+      if(this.checkTag(tag)) this.$store.state.myWants.push(tag);
+      else this.$store.state.myWants = this.$store.state.myWants.filter(want => want!==tag)
+    },
+    checkTag(tag) {
+      return this.$store.state.myWants.indexOf(tag) == -1
+    }
   }
 };
 </script> 
