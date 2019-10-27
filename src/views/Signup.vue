@@ -17,11 +17,11 @@
         <div class="signupform">
           <div id="errorMessage"></div>
           <p class="nameText">名前</p>
-          <input type="text" class="textForm" name="name" size="22" maxlength="20" required />
+          <input type="text" class="textForm" name="name" size="22" maxlength="20" required/>
           <p class="idText">学籍番号</p>
-          <input type="text" class="textForm" name="number" size="22" maxlength="20" required />
-          <p class="passText">パスワード</p>
-          <input type="password" class="textForm" id="inpassword" size="22" maxlength="20" required />
+          <input type="text" class="textForm" name="number" size="22" maxlength="20" required/>
+          <p class="passText">パスワード(6文字以上)</p>
+          <input type="password" class="textForm" id="inpassword" size="22" minlength="6" maxlength="20" required/>
           <p class="passText">パスワード(確認用)</p>
           <input
             type="password"
@@ -29,6 +29,7 @@
             id="checkpassword"
             size="22"
             maxlength="20"
+            minlength="6"
             required
           />
           <input
@@ -38,6 +39,7 @@
             name="password"
             size="22"
             maxlength="20"
+            minlength="6"
             required
           />
           <p>
