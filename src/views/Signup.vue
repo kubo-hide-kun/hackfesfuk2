@@ -60,7 +60,7 @@ export default {
         if (input1.value != input2.value) {
           // エラー処理
           document.getElementById("errorMessage").innerHTML =
-          "入力値にエラーがあります";
+          "<p style='color: red;'>確認用パスワードが一致しません</p>";
           return false;
         } else {
           // passwordというidを持つ要素にinpasswordの値を代入
