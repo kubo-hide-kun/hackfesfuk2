@@ -7,7 +7,7 @@
             <svg height="80" wlass="pa-0 ma-0">
               <ellipse cx="50%" cy="30%" rx="60%" ry="70%" fill="#1867c0" />
               <g font-family="sans-serif" fill="white" font-size="200%">
-                <text x="50%" y="65%" text-anchor="middle">Sample Name</text>
+                <text x="50%" y="65%" text-anchor="middle">Study Group Management System</text>
               </g>
             </svg>
 
@@ -135,6 +135,11 @@ export default {
   }),
   mounted() {
     this.events = SampleEvents;
+    fetch("https://hackfesfuk-api.azurewebsites.net/api/get-events").then(
+      response => {
+        console.log(response)//eslint-disable-line
+      }
+    )
     this.setSignedFlag();
     setInterval(() => {
       this.mediaQuery = matchMedia("(max-width: 1400px)").matches;
