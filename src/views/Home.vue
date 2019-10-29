@@ -135,6 +135,11 @@ export default {
   }),
   mounted() {
     this.events = SampleEvents;
+    fetch("https://hackfesfuk-api.azurewebsites.net/api/get-events").then(
+      response => {
+        console.log(response)//eslint-disable-line
+      }
+    )
     this.setSignedFlag();
     setInterval(() => {
       this.mediaQuery = matchMedia("(max-width: 1400px)").matches;
