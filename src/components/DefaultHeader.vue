@@ -2,7 +2,7 @@
   <v-app-bar app>
     <v-toolbar-title class="headline">
     <router-link to="/">
-      <span>Sample Name</span>
+      <span>SGMS</span>
     </router-link>
     </v-toolbar-title>
     <v-spacer />
