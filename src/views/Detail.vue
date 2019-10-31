@@ -57,13 +57,13 @@ Vue.use(mavonEditor);
 export default {
   data() {
     return {
-      title: "タイトル",
-      description: "# HACKFESFUK",
-      start: "2001-08-02T10:45:23.5+09:00",
+      title: "Twitterのバズらせ方講座",
+      description: "# Twitterのバズらせ方講座 \n こん感じで `MarkDown` も書けます．\n\n $$ \n f(x) = a_xb_x \n $$ \n",
+      start: "2001-09-02T10:45:23.5+09:00",
       end: "2001-08-02T17:00:00+09:00",
-      place: "場所",
-      tags: ["タグ配列1", "タグ配列2", "タグ配列3"],
-      owner: "主催者の名前",
+      place: "セミナールームB",
+      tags: ["Twitter","機械学習"],
+      owner: "白メガネの「クボ太郎」",
       nowAttendances: 0,
       limitAttendances: 0,
       startDate: "",
