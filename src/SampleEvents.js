@@ -5,7 +5,7 @@ export default [
       end:"2001-09-02T17:30:00+09:00",
       place:"セミナールームB",
       tags:["Twitter","機械学習"],
-      owner:"Aさん",
+      owner:"白メガネの「クボ太郎」",
       nowAttendances:129,
       limitAttendances:334
     },
